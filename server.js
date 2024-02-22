@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoutes");
 const authRoutes = require("./routes/AuthRoutes");
-const router = require("./AAAA/auth");
+const router = require("./AAAA/Practice");
 dotenv.config();
 
 mongoose
@@ -16,8 +16,7 @@ mongoose
 
 app.use(express.json());
 app.use("/api/user", userRoute);
-// app.use("/api/auth", authRoutes);
-app.use("/api/auth",router)
+app.use("/api/auth", authRoutes);
 
 app.listen(5000, () => {
   console.log("app running at 5000");
