@@ -4,7 +4,6 @@ const app = express();
 const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoutes");
 const authRoutes = require("./routes/AuthRoutes");
-const router = require("./AAAA/Practice");
 dotenv.config();
 
 mongoose
