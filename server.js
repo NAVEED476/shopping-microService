@@ -14,8 +14,8 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.json());
+app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoute);
-app.use("/api/auth", authRoutes);
 
 app.listen(5000, () => {
   console.log("app running at 5000");
