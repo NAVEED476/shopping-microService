@@ -51,13 +51,14 @@ userRoute.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
 
-    const { password, ...others } = user;
+    const { password, ...others } = user._doc;
     res.status(200).json(others);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+// Get all Users
 userRoute.get("/users", verifyTokenAndAdmin, async (req, res) => {
   try {
     const users = await Users.find();
@@ -66,5 +67,36 @@ userRoute.get("/users", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//Get User Stats
+
+userRoute.get("/stats", verifyTokenAndAdmin, async (req, res) => {
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+  try {
+    const data = await Users.aggregate([
+      {
+        $match: {
+          createdAt: { $gte: lastYear }
+        }
+      },
+      {
+        $group: {
+          _id: { $month: "$createdAt" },
+          total: { $sum: 1 }
+        }
+      },
+      {
+        $sort: {
+          "_id": 1
+        }
+      }
+    ]);
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = userRoute;
