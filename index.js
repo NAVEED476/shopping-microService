@@ -3,11 +3,11 @@ const { default: mongoose } = require("mongoose");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
-const userRoute = require("./routes/userRoutes");
-const authRoutes = require("./routes/AuthRoutes");
-const productRoute = require("./routes/ProductRoutes");
-const cartRoutes = require("./routes/CartRoutes");
-const orderRoutes = require("./routes/OrderRoutes");
+const userRoute = require("./routes/userRoutes.js");
+const authRoutes = require("./routes/AuthRoutes.js");
+const productRoute = require("./routes/ProductRoutes.js");
+const cartRoutes = require("./routes/CartRoutes.js");
+const orderRoutes = require("./routes/OrderRoutes.js");
 const stripeRoute = require("./routes/Stripe.js");
 dotenv.config();
 
