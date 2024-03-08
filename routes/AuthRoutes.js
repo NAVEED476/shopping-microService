@@ -47,7 +47,7 @@ AuthRoutes.post("/login", async (req, res) => {
     const accesstoken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT_SEC,
-      { expiresIn: "3d" }
+      { expiresIn: "30d" }
     );
     const { password, ...others } = user._doc;
 
